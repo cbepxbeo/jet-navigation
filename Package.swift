@@ -13,7 +13,8 @@ let package = Package(
     targets: [
         .target(
             name: "JetNavigation",
-            dependencies: []
+            dependencies: [],
+            path: "Sources"
         ),
         .testTarget(
             name: "JetNavigationTests",
