@@ -7,9 +7,4 @@
 //  Статус: #В процессе | #Не оформлен
 //
 
-public struct JetNavigation {
-    public private(set) var text = "Hello, World!"
-
-    public init() {
-    }
-}
+public struct JetNavigation {}
