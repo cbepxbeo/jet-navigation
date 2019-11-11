@@ -1,6 +1,6 @@
 // swift-tools-version:5.1
 //
-// Автор: Егор Олегович
+// Created by: Egor Boyko
 
 import PackageDescription
 
