@@ -1,10 +1,9 @@
 //
-//  Проект: JetNavigation
-//  Файл: JetNavigation.swift
-//  Создал: Егор Бойко
-//  Дата: 10.11.2019
+// Project: JetNavigation
+// File: JetNavigation.swift
+// Created by: Egor Boyko
+// Date: 10.11.2019
 //
-//  Статус: #В процессе | #Не оформлен
-//
+// Status: #In progress | #Not decorated
 
 public struct JetNavigation {}

@@ -1,16 +1,18 @@
 //
-//  Проект: JetNavigation
-//  Файл: JetNavigationTransition.swift
-//  Создал: Егор Бойко
-//  Дата: 10.11.2019
+// Project: JetNavigation
+// File: JetNavigationTransition.swift
+// Created by: Egor Boyko
+// Date: 10.11.2019
 //
-//  Статус: #В процессе | #Не оформлен
+// Status: #Completed | #Decorated
 //
+
 import SwiftUI
 
-///Переходы между представлениями
+///Transitions between views
 public enum JetNavigationTransition {
     
+    ///Tuple, for initialization
     public typealias Transitions = (
         backward: AnyTransition,
         forward: AnyTransition,
@@ -18,14 +20,26 @@ public enum JetNavigationTransition {
         identity: AnyTransition
     )
     
-    case none, `default`
+    ///To initialize using default settings
+    case `default`
+    ///To transition without animation
+    case none
+    ///For initialization based on a single transition
     case single(AnyTransition)
-    case full(AnyTransition, AnyTransition)
+    /// For initialization based on two transitions
+    case double(AnyTransition, AnyTransition)
     
-    static internal var transitions: Self.Transitions =
+    ///Default transitions
+    static internal var defaultTransitions: Self.Transitions =
     (
-        .asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)),
-        .asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)),
+        .asymmetric(
+            insertion: .move(edge: .leading),
+            removal: .move(edge: .trailing)
+        ),
+        .asymmetric(
+            insertion: .move(edge: .trailing),
+            removal: .move(edge: .leading)
+        ),
         .opacity,
         .identity
     )

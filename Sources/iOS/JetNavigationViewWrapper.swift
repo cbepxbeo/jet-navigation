@@ -1,24 +1,20 @@
 //
-//  Проект: JetNavigation
-//  Файл: JetNavigationViewWrapper.swift
-//  Создал: Егор Бойко
-//  Дата: 10.11.2019
+// Project: JetNavigation
+// File: JetNavigationViewWrapper.swift
+// Created by: Egor Boyko
+// Date: 10.11.2019
 //
-//  Статус: #Закончен | #Не оформлен
+// Status: #Completed | #Decorated
 //
 
 import SwiftUI
 
-///Обертка над представлением, для последующего хранения
-internal struct JetNavigationViewWrapper: Equatable, Identifiable {
+///Wrapper over the view, for later storage
+internal struct JetNavigationViewWrapper: Identifiable {
     
-    static internal func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.id == rhs.id
-    }
-    
-    ///id для доступа к представлению + возможность итерации Identifiable
+    ///id to access the view + Identifiable iteration capability
     internal let id: String
-    ///хранимое представление
+    ///Stored view
     internal let view: AnyView
     
     internal init(id: String, view: AnyView){
@@ -26,4 +22,13 @@ internal struct JetNavigationViewWrapper: Equatable, Identifiable {
         self.view = view
     }
 
+}
+
+//MARK: Equatable
+extension JetNavigationViewWrapper: Equatable {
+    
+    static internal func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.id == rhs.id
+    }
+    
 }
