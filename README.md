@@ -2,8 +2,6 @@
 
 An alternative SwiftUI NavigationView.
 
-//
-
 ```swift
 import JetNavigation
 
