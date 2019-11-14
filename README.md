@@ -2,6 +2,8 @@
 
 An alternative SwiftUI NavigationView.
 
+//
+
 ```swift
 import JetNavigation
 
@@ -35,3 +37,4 @@ struct SecondExample: View {
     }
 }
 ```
+![RecordScreen-1](https://github.com/cbepxbeo/jet-navigation/blob/main/Media/Gif/screen-1.gif)
