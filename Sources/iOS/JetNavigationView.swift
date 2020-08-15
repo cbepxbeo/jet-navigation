@@ -11,7 +11,7 @@ import SwiftUI
 
 public struct JetNavigationView <Content: View>: View {
     
-    @ObservedObject private var controller: JetNavigationController
+    @StateObject private var controller: JetNavigationController
     
     private let transitions: JetNavigationTransition.Transitions
     private let root: Content
@@ -61,7 +61,7 @@ public struct JetNavigationView <Content: View>: View {
         
         self.root = root()
         let controller = JetNavigationController(easing, option: startOption)
-        self._controller = ObservedObject(initialValue: controller)
+        self._controller = StateObject(wrappedValue: controller)
     }
 
 }
