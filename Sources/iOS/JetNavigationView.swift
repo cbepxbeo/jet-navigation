@@ -43,6 +43,7 @@ public struct JetNavigationView <Content: View>: View {
     }
     
     public init(
+        externalController: JetNavigationExternalController? = nil,
         transition: JetNavigationTransition = .default,
         easing: Animation = Animation.easeOut(duration: 0.4),
         startOption: JetNavigationOption = .forward,
@@ -62,6 +63,8 @@ public struct JetNavigationView <Content: View>: View {
         self.root = root()
         let controller = JetNavigationController(easing, option: startOption)
         self._controller = StateObject(wrappedValue: controller)
+        if var external = externalController{
+            external.jetNavigationController = controller
+        }
     }
-
 }

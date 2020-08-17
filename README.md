@@ -35,4 +35,39 @@ struct SecondExample: View {
     }
 }
 ```
-![RecordScreen-1](https://github.com/cbepxbeo/jet-navigation/blob/main/Media/Gif/screen-1.gif)
+![RecordScreen-1](https://github.com/cbepxbeo/jet-navigation/blob/main/Media/Gif/screen-1.gif)   
+
+## JetNavigationExternalController   
+
+Allows you to control navigation outside of the JetNavigationView
+
+```swift
+class ExternalController: JetNavigationExternalController, ObservableObject {
+    var jetNavigationController: AnyObject?
+}
+
+struct RootView: View {
+    
+    @StateObject
+    var externalController:
+        ExternalController = .init()
+    
+    var body: some View {
+        VStack{
+            JetNavigationView(externalController: externalController) {
+                FirstExample()
+            }
+            
+            //External button for control
+            Button {
+                self.externalController.home()
+            } label: {
+                Text("Go to home")
+            }
+
+        }
+    }
+}
+```
+
+![RecordScreen-2](https://github.com/cbepxbeo/jet-navigation/blob/main/Media/Gif/screen-2.gif)   
