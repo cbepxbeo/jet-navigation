@@ -15,7 +15,7 @@ public struct JetNavigationLink<Destination, Label>:
     @EnvironmentObject private var controller: JetNavigationController
     
     private let label: Label?
-    private let destination: Destination?
+    private let destination: (() -> Destination)?
 
 
     private let tag: String?
@@ -23,7 +23,7 @@ public struct JetNavigationLink<Destination, Label>:
     
     public init
     (
-        destination: Destination,
+        @ViewBuilder destination: @escaping () -> Destination,
         tag: String = UUID().uuidString,
         @ViewBuilder label: () -> Label
     )
@@ -54,7 +54,7 @@ public struct JetNavigationLink<Destination, Label>:
     private func toTransition(){
         if self.destination != nil {
             controller.goTo(
-                representation: destination,
+                representation: destination!(),
                 tag: self.tag!)
         } else {
             self.controller.goTo(tag: self.tag!)
