@@ -14,6 +14,10 @@ public struct JetNavigationLink<Destination, Label, Style>:
     @EnvironmentObject private var controller: JetNavigationController
     ///Link Label
     private let label: Label?
+    ///Button style
+    private let style: Style?
+    ///Button name
+    private let buttonName: String?
     ///transition view
     private let destination: (() -> Destination)?
     ///Unique tag to designate a view
@@ -69,9 +73,12 @@ extension JetNavigationLink where Style == JetNavigationButton {
             self.label = label()
             self.tag = tag
             self.action = nil
+            self.buttonName = nil
+            self.style = nil
     }
 }
 
+//MARK: Initialization without destination and style
 extension JetNavigationLink where Destination == Never, Style == JetNavigationButton {
     /**
      Designed to navigate to a previously saved view by the destination tag. Accepts label for styling.
@@ -80,14 +87,15 @@ extension JetNavigationLink where Destination == Never, Style == JetNavigationBu
      - Note: If the tag is not unique, the end result will be undefined. At the time the view is received, the first tag that matches will be used. If the tag is not found, it will navigate back.
     */
     public init(
-        tag: String = UUID().uuidString,
+        tag: String,
         @ViewBuilder label: () -> Label) {
             self.destination = nil
             self.label = label()
             self.tag = tag
             self.action = nil
+            self.buttonName = nil
+            self.style = nil
     }
-    
     /**
      Designed to move through the action. Accepts label for styling.
      - parameter action: Transition action option (back/home)
@@ -100,5 +108,65 @@ extension JetNavigationLink where Destination == Never, Style == JetNavigationBu
             self.label = label()
             self.tag = nil
             self.action = action
+            self.buttonName = nil
+            self.style = nil
+    }
+}
+
+//MARK: Initialization without a label
+extension JetNavigationLink where Label == Never {
+    /**
+     Designed to move through the action. Accepts a button style and a title.
+     - parameter buttonName: Button title
+     - parameter style: Button Style
+     - parameter action: Transition action option (back/home)
+    */
+    public init(
+        _ buttonName: String,
+        style: Style,
+        action: JetNavigationAction = .back) {
+            self.destination = nil
+            self.label = nil
+            self.tag = nil
+            self.action = action
+            self.buttonName = nil
+            self.style = nil
+    }
+    /**
+     Designed to navigate to a previously saved view by the destination tag. Accepts a button style and a title.
+     - parameter buttonName: Button title
+     - parameter style: Button Style
+     - parameter tag: Unique tag to designate a view
+     - Note: If the tag is not unique, the end result will be undefined. At the time the view is received, the first tag that matches will be used. If the tag is not found, it will navigate back.
+    */
+    public init(
+        _ buttonName: String,
+        style: Style,
+        tag: String) {
+            self.destination = nil
+            self.label = nil
+            self.tag = nil
+            self.action = nil
+            self.buttonName = nil
+            self.style = nil
+    }
+    /**
+     Designed to initialize a link that accepts a destination. Accepts a button style and a title.
+     - parameter buttonName: Button title
+     - parameter style: Button Style
+     - parameter destination: Transition View
+     - Note: It is necessary to manually control the uniqueness of the tag
+    */
+    public init(
+        _ buttonName: String,
+        style: Style,
+        tag: String = UUID().uuidString,
+        @ViewBuilder destination: @escaping () -> Destination) {
+            self.destination = nil
+            self.label = nil
+            self.tag = nil
+            self.action = nil
+            self.buttonName = nil
+            self.style = nil
     }
 }
