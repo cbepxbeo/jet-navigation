@@ -26,9 +26,7 @@ public struct JetNavigationLink<Destination, Label, Style>:
     private let action: JetNavigationAction?
                 
     public var body: some View {
-        Button(action: self.go){
-            self.label
-        }
+        _viewButton
     }
     
     //MARK: Methods
@@ -55,6 +53,37 @@ public struct JetNavigationLink<Destination, Label, Style>:
         }
     }
 }
+
+//MARK: Representation Logic
+extension JetNavigationLink {
+    
+    private var _viewButton: some View {
+        Group{
+            if self.style != nil && self.buttonName != nil {
+                _viewStateButtonWithoutLabel
+            } else if self.label != nil {
+                _viewStateButtonWithLabel
+            } else {
+                Text("Unintended state")
+            }
+        }
+    }
+    
+    private var _viewStateButtonWithLabel: some View {
+        Button(action: self.go){
+            self.label!
+        }
+    }
+    
+    private var _viewStateButtonWithoutLabel: some View {
+        Button(self.buttonName!){
+            self.go()
+        }
+        .buttonStyle(self.style!)
+    }
+}
+
+
 
 //MARK: Initialization without style
 extension JetNavigationLink where Style == JetNavigationButton {
