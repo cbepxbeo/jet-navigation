@@ -2,42 +2,54 @@
 
 An alternative SwiftUI NavigationView.
 
+# JetNavigationView
+
+
 ```swift
 import JetNavigation
 
 struct RootView: View {
     var body: some View {
         JetNavigationView {
-            FirstExample()
+            ExampleView()
         }
     }
 }
 
-struct FirstExample: View {
-    var body: some View {
-        ZStack {
-            Color.green
-            JetNavigationLink(destination: SecondExample()) {
-                Text("Go to Second")
-            }
-        }
-    }
-}
-
-struct SecondExample: View {
-    var body: some View {
-        ZStack {
-            Color.red
-            JetNavigationLink(action: .back) {
-                Text("Back")
-            }
-        }
-    }
-}
 ```
-![RecordScreen-1](https://github.com/cbepxbeo/jet-navigation/blob/main/Media/Gif/screen-1.gif)   
+![RecordScreen-1](https://github.com/cbepxbeo/jet-navigation/blob/main/Media/Gif/screen-1.gif)
 
-## JetNavigationExternalController   
+# JetNavigationLink
+
+## Parameters:    
+
+- `destination` - the view to navigate   
+- `tag` - unique tag of the view that is being navigated to   
+- `toTag` - the view tag to navigate   
+- `option` - transition option (animation)   
+- `action` - go back either to the root view   
+- `style` - button style   
+- `label` - button design for the transition   
+- `nameButton` - the name of the button (when using a style)   
+
+## Possible Options for Combining Parameters:   
+
+- `destination` + `label`   
+- `destination` + `tag` + `label`   
+- `destination` + `option` + `label`   
+- `destination` + `tag` + `option` + `label`   
+- `buttonName` + `style` + `option` + `destination`   
+- `buttonName` + `style` + `destination`    
+- `buttonName` + `style` + `option` + `action`   
+- `buttonName` + `style` + `action`   
+- `buttonName` + `style` + `option` + `tag`   
+- `buttonName` + `style` + `tag`   
+- `action` + `option` + `label`   
+- `tag` + `option` + `label`   
+- `tag` + `label`   
+- `option` + `label`   
+
+# JetNavigationExternalController   
 
 Allows you to control navigation outside of the JetNavigationView
 

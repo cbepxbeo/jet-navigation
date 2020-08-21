@@ -34,14 +34,14 @@ public final class JetNavigationController: ObservableObject{
     //MARK: Public methods
     
     ///Return to the root view
-    /// - Parameter option: transition option (forward/backward)
+    /// - Parameter option: transition option (forward/backward/identity/opacity)
     public func home(option: JetNavigationOption = .backward){
         self.option = option
         self.storage.removeAll()
     }
     
     ///Go back one screen
-    /// - Parameter option: transition option (forward/backward)
+    /// - Parameter option: transition option (forward/backward/identity/opacity)
     public func back(option: JetNavigationOption = .backward){
         self.option = option
         self.storage.removeLast()
@@ -50,14 +50,14 @@ public final class JetNavigationController: ObservableObject{
     ///Go to assigned screen
     /// - Parameter representation: Destination View
     /// - Parameter tag: unique tag for Destination Screen
-    /// - Parameter option: transition option (forward/backward)
+    /// - Parameter option: transition option (forward/backward/identity/opacity)
     public func goTo<Representation: View>(
         representation: Representation,
         tag: String = UUID().uuidString,
-        option: JetNavigationOption = .forward
+        option: JetNavigationOption? = nil
     )
     {
-        self.option = option
+        self.option = option == nil ? .forward : option!
         self.storage.append(
             JetNavigationViewWrapper(
                 id: tag,
@@ -68,8 +68,9 @@ public final class JetNavigationController: ObservableObject{
     
     ///Go to the presented screen by tag
     /// - Parameter tag: screen tag
-    /// - Parameter option: transition option (forward/backward)
-    public func goTo(tag: String, option: JetNavigationOption = .backward){
+    /// - Parameter option: transition option (forward/backward/identity/opacity)
+    public func goTo(tag: String, option: JetNavigationOption? = nil){
+        self.option = option == nil ? .backward : option!
         self.storage.move(tag: tag)
     }
 }
