@@ -21,6 +21,8 @@ struct RootView: View {
 
 # JetNavigationLink
 
+JetNavigationLink allows you to navigate between views and is a universal means of interacting with navigation. When creating a JetNavigationLink, you can specify a navigation option (forward/backward/no animation/transparency), a view to navigate to, or an action (backward or root view). When you specify a view to navigate to, it is possible to specify a tag and subsequently navigate to it. Each of these options allows you to use either a label or a button style.   
+
 ## Parameters:    
 
 - `destination` - the view to navigate   
@@ -42,11 +44,11 @@ struct RootView: View {
 - `buttonName` + `style` + `destination`    
 - `buttonName` + `style` + `option` + `action`   
 - `buttonName` + `style` + `action`   
-- `buttonName` + `style` + `option` + `tag`   
+- `buttonName` + `style` + `option` + `toTag`   
 - `buttonName` + `style` + `tag`   
 - `action` + `option` + `label`   
-- `tag` + `option` + `label`   
-- `tag` + `label`   
+- `toTag` + `option` + `label`   
+- `toTag` + `label`   
 - `option` + `label`   
 
 # JetNavigationExternalController   
