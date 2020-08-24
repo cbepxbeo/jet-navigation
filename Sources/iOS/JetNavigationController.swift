@@ -35,15 +35,15 @@ public final class JetNavigationController: ObservableObject{
     
     ///Return to the root view
     /// - Parameter option: transition option (forward/backward/identity/opacity)
-    public func home(option: JetNavigationOption = .backward){
-        self.option = option
+    public func home(option: JetNavigationOption? = nil){
+        self.option = option == nil ? .backward : option!
         self.storage.removeAll()
     }
     
     ///Go back one screen
     /// - Parameter option: transition option (forward/backward/identity/opacity)
-    public func back(option: JetNavigationOption = .backward){
-        self.option = option
+    public func back(option: JetNavigationOption? = nil){
+        self.option = option == nil ? .backward : option!
         self.storage.removeLast()
     }
     

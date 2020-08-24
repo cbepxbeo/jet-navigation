@@ -21,7 +21,7 @@ struct RootView: View {
 
 # JetNavigationLink
 
-JetNavigationLink allows you to navigate between views and is a universal means of interacting with navigation. When creating a JetNavigationLink, you can specify a navigation option (forward/backward/no animation/transparency), a view to navigate to, or an action (backward or root view). When you specify a view to navigate to, it is possible to specify a tag and subsequently navigate to it. Each of these options allows you to use either a label or a button style.   
+`JetNavigationLink` allows you to navigate between views and is a universal means of interacting with navigation. When creating a `JetNavigationLink`, you can specify a navigation option (forward/backward/identity/opacity), a view to navigate to, or an action (backward or root view). When you specify a view to navigate to, it is possible to specify a tag and subsequently navigate to it. Each of these options allows you to use either a label or a button style.   
 
 ## Parameters:    
 
@@ -50,6 +50,42 @@ JetNavigationLink allows you to navigate between views and is a universal means 
 - `toTag` + `option` + `label`   
 - `toTag` + `label`   
 - `option` + `label`   
+
+## Examples:
+
+```swift
+
+struct RedView: View {
+    var body: some View {
+        ZStack {
+            Color.red
+            //Use destination and label
+            JetNavigationLink(destination: { BlueView() }) {
+                HStack{
+                    Text("Go to blue")
+                        .foregroundColor(.white)
+                        .padding()
+                }.background(Color.yellow)
+            }
+        }
+    }
+}
+
+struct BlueView: View {
+    var body: some View {
+        ZStack {
+            Color.blue
+            //Use option forward and action
+            JetNavigationLink(action: .back, option: .forward) {
+                Text("Back")
+                    .foregroundColor(.white)
+            }
+        }
+    }
+}
+
+```
+![RecordScreen-1](https://github.com/cbepxbeo/jet-navigation/blob/main/Media/Gif/screen-3.gif)
 
 # JetNavigationExternalController   
 

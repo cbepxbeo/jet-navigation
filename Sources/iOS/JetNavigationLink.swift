@@ -31,6 +31,7 @@ public struct JetNavigationLink<Destination, Label, Style>:
         self._viewButton
     }
     
+    
     //MARK: Methods
     private func go() {
         self.action == nil ? self.toTransition() : self.toAction()
@@ -51,9 +52,9 @@ public struct JetNavigationLink<Destination, Label, Style>:
     private func toAction(){
         switch self.action! {
         case .back:
-            self.controller.back()
+            self.controller.back(option: self.option)
         case .home:
-            self.controller.home()
+            self.controller.home(option: self.option)
         }
     }
 }
