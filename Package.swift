@@ -1,19 +1,20 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.3
 //
-// Автор: Егор Олегович
+// Created by: Egor Boyko
 
 import PackageDescription
 
 let package = Package(
     name: "JetNavigation",
-    platforms: [.iOS(.v13)],
+    platforms: [.iOS(.v14)],
     products: [
         .library(name: "JetNavigation",targets: ["JetNavigation"])
     ],
     targets: [
         .target(
             name: "JetNavigation",
-            dependencies: []
+            dependencies: [],
+            path: "Sources"
         ),
         .testTarget(
             name: "JetNavigationTests",
