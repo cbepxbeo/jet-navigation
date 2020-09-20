@@ -26,6 +26,8 @@ public struct JetNavigationLink<Destination, Label, Style>:
     private let action: JetNavigationAction?
     ///Transition option (forward/backward/identity/opacity)
     private let option: JetNavigationOption?
+    
+    private let title: String?
                 
     public var body: some View {
         self._viewButton
@@ -42,7 +44,9 @@ public struct JetNavigationLink<Destination, Label, Style>:
             controller.goTo(
                 representation: destination!(),
                 tag: self.tag!,
+                title: self.title,
                 option: self.option
+                
             )
         } else {
             self.controller.goTo(tag: self.tag!, option: self.option)
@@ -104,6 +108,7 @@ extension JetNavigationLink where Style == JetNavigationButton {
         @ViewBuilder destination: @escaping () -> Destination,
         tag: String = UUID().uuidString,
         option: JetNavigationOption? = nil,
+        title: String? = nil,
         @ViewBuilder label: () -> Label) {
             self.destination = destination
             self.label = label()
@@ -112,6 +117,7 @@ extension JetNavigationLink where Style == JetNavigationButton {
             self.buttonName = nil
             self.style = nil
             self.option = option
+            self.title = title
     }
 }
 
@@ -127,6 +133,7 @@ extension JetNavigationLink where Destination == Never, Style == JetNavigationBu
     public init(
         toTag: String,
         option: JetNavigationOption? = nil,
+        title: String? = nil,
         @ViewBuilder label: () -> Label) {
             self.destination = nil
             self.label = label()
@@ -135,6 +142,7 @@ extension JetNavigationLink where Destination == Never, Style == JetNavigationBu
             self.buttonName = nil
             self.style = nil
             self.option = option
+            self.title = title
     }
     /**
      Designed to move through the action. Accepts label for styling.
@@ -145,6 +153,7 @@ extension JetNavigationLink where Destination == Never, Style == JetNavigationBu
     public init(
         action: JetNavigationAction,
         option: JetNavigationOption? = nil,
+        title: String? = nil,
         @ViewBuilder label: () -> Label) {
             self.destination = nil
             self.label = label()
@@ -153,6 +162,7 @@ extension JetNavigationLink where Destination == Never, Style == JetNavigationBu
             self.buttonName = nil
             self.style = nil
             self.option = option
+            self.title = title
     }
 }
 
@@ -172,6 +182,7 @@ extension JetNavigationLink where Label == Never {
         option: JetNavigationOption? = nil,
         style: Style,
         tag: String = UUID().uuidString,
+        title: String? = nil,
         @ViewBuilder destination: @escaping () -> Destination) {
             self.destination = destination
             self.label = nil
@@ -180,6 +191,7 @@ extension JetNavigationLink where Label == Never {
             self.buttonName = buttonName
             self.style = style
             self.option = option
+            self.title = title
     }
 }
 
@@ -196,6 +208,7 @@ extension JetNavigationLink where Destination == Never, Label == Never {
         _ buttonName: String,
         option: JetNavigationOption? = nil,
         style: Style,
+        title: String? = nil,
         action: JetNavigationAction = .back) {
             self.destination = nil
             self.label = nil
@@ -204,6 +217,7 @@ extension JetNavigationLink where Destination == Never, Label == Never {
             self.buttonName = buttonName
             self.style = style
             self.option = option
+            self.title = title
     }
     /**
      Designed to navigate to a previously saved view by the destination tag. Accepts a button style and a title.
@@ -217,6 +231,7 @@ extension JetNavigationLink where Destination == Never, Label == Never {
         _ buttonName: String,
         option: JetNavigationOption? = nil,
         style: Style,
+        title: String? = nil,
         toTag: String) {
             self.destination = nil
             self.label = nil
@@ -225,5 +240,6 @@ extension JetNavigationLink where Destination == Never, Label == Never {
             self.buttonName = buttonName
             self.style = style
             self.option = option
+            self.title = title
     }
 }

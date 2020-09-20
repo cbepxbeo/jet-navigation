@@ -34,18 +34,22 @@ public struct JetNavigationView <Content: View>: View {
             self.root
                 .transition(transition)
                 .environmentObject(controller)
-                
-        } else {
-            controller.current!.view
-                .transition(transition)
-                .environmentObject(controller)
+        } else  {
+            JetNavigationHeader(title: controller.current!.title){
+                if true {
+                    controller.current!.view
+                        .transition(transition)
+                }
+            }
+            .environmentObject(controller)
+            .transition(transition)
         }
     }
     
     public init(
         externalController: JetNavigationExternalController? = nil,
         transition: JetNavigationTransition = .default,
-        easing: Animation = Animation.easeOut(duration: 0.4),
+        easing: Animation = Animation.easeOut(duration: 0.2),
         startOption: JetNavigationOption = .forward,
         @ViewBuilder root: () -> Content)
     {
@@ -68,3 +72,7 @@ public struct JetNavigationView <Content: View>: View {
         }
     }
 }
+
+
+
+

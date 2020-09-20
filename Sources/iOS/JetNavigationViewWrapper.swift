@@ -17,9 +17,12 @@ internal struct JetNavigationViewWrapper: Identifiable {
     ///Stored view
     internal let view: AnyView
     
-    internal init(id: String, view: AnyView){
+    internal let title: String?
+    
+    internal init(id: String, view: AnyView, title: String? = nil){
         self.id = id
         self.view = view
+        self.title = title
     }
 
 }

@@ -14,7 +14,7 @@ public final class JetNavigationController: ObservableObject{
     
     @Published internal var current: JetNavigationViewWrapper?
     @Published private(set) var option: JetNavigationOption
-    
+
     private let easing: Animation
     
     private var storage: JetNavigationStorage {
@@ -54,6 +54,7 @@ public final class JetNavigationController: ObservableObject{
     public func goTo<Representation: View>(
         representation: Representation,
         tag: String = UUID().uuidString,
+        title: String? = nil,
         option: JetNavigationOption? = nil
     )
     {
@@ -61,7 +62,8 @@ public final class JetNavigationController: ObservableObject{
         self.storage.append(
             JetNavigationViewWrapper(
                 id: tag,
-                view: AnyView(representation)
+                view: AnyView(representation),
+                title: title
             )
         )
     }
